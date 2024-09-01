@@ -4,27 +4,22 @@ Copyright 2016-present ol-mapbox-style contributors
 License: https://raw.githubusercontent.com/openlayers/ol-mapbox-style/master/LICENSE
 */
 
-import { toPromise } from 'ol/functions.js';
-import RenderFeature from 'ol/render/Feature.js';
 import Circle from 'ol/style/Circle.js';
 import Fill from 'ol/style/Fill.js';
 import Icon from 'ol/style/Icon.js';
+import RenderFeature from 'ol/render/Feature.js';
 import Stroke from 'ol/style/Stroke.js';
 import Style from 'ol/style/Style.js';
 import Text from 'ol/style/Text.js';
+import {toPromise} from 'ol/functions.js';
 
-import derefLayers from '@mapbox/mapbox-gl-style-spec/deref.js';
-import {
-  createPropertyExpression,
-  isExpression,
-} from '@mapbox/mapbox-gl-style-spec/expression/index.js';
-import createFilter from '@mapbox/mapbox-gl-style-spec/feature_filter/index.js';
-import convertFunction from '@mapbox/mapbox-gl-style-spec/function/convert.js';
-import { isFunction } from '@mapbox/mapbox-gl-style-spec/function/index.js';
-import spec from '@mapbox/mapbox-gl-style-spec/reference/v8.json';
 import Color from '@mapbox/mapbox-gl-style-spec/util/color.js';
+import convertFunction from '@mapbox/mapbox-gl-style-spec/function/convert.js';
+import createFilter from '@mapbox/mapbox-gl-style-spec/feature_filter/index.js';
+import derefLayers from '@mapbox/mapbox-gl-style-spec/deref.js';
 import mb2css from 'mapbox-to-css-font';
-import { applyLetterSpacing, wrapText } from './text.js';
+import spec from '@mapbox/mapbox-gl-style-spec/reference/v8.json';
+import {applyLetterSpacing, wrapText} from './text.js';
 import {
   clearFunctionCache,
   createCanvas,
@@ -37,6 +32,11 @@ import {
   getStyleFunctionKey,
   getZoomForResolution,
 } from './util.js';
+import {
+  createPropertyExpression,
+  isExpression,
+} from '@mapbox/mapbox-gl-style-spec/expression/index.js';
+import {isFunction} from '@mapbox/mapbox-gl-style-spec/function/index.js';
 
 /**
  * @typedef {import("ol/layer/Vector").default} VectorLayer
@@ -81,7 +81,7 @@ const expressionData = function (rawExpression, propertySpec) {
 };
 
 const emptyObj = {};
-const zoomObj = { zoom: 0 };
+const zoomObj = {zoom: 0};
 let renderFeatureCoordinates, renderFeature;
 
 /**
@@ -229,14 +229,14 @@ function colorWithOpacity(color, opacity) {
     return a === 0
       ? 'transparent'
       : 'rgba(' +
-      Math.round((color.r * 255) / a) +
-      ',' +
-      Math.round((color.g * 255) / a) +
-      ',' +
-      Math.round((color.b * 255) / a) +
-      ',' +
-      a * opacity +
-      ')';
+          Math.round((color.r * 255) / a) +
+          ',' +
+          Math.round((color.g * 255) / a) +
+          ',' +
+          Math.round((color.b * 255) / a) +
+          ',' +
+          a * opacity +
+          ')';
   }
   return color;
 }
@@ -371,7 +371,7 @@ export function stylefunction(
               blobUrl = URL.createObjectURL(blob);
               img.src = blobUrl;
             })
-            .catch(() => { });
+            .catch(() => {});
         } else {
           img.crossOrigin = 'anonymous';
           img.src = spriteImageUrl;
@@ -726,16 +726,16 @@ export function stylefunction(
             stroke.setLineDash(
               paint['line-dasharray']
                 ? getValue(
-                  layer,
-                  'paint',
-                  'line-dasharray',
-                  zoom,
-                  f,
-                  functionCache,
-                  featureState,
-                ).map(function (x) {
-                  return x * width;
-                })
+                    layer,
+                    'paint',
+                    'line-dasharray',
+                    zoom,
+                    f,
+                    functionCache,
+                    featureState,
+                  ).map(function (x) {
+                    return x * width;
+                  })
                 : null,
             );
             style.setZIndex(index);
@@ -862,14 +862,14 @@ export function stylefunction(
                 const iconColor =
                   paint['icon-color'] !== undefined
                     ? getValue(
-                      layer,
-                      'paint',
-                      'icon-color',
-                      zoom,
-                      f,
-                      functionCache,
-                      featureState,
-                    )
+                        layer,
+                        'paint',
+                        'icon-color',
+                        zoom,
+                        f,
+                        functionCache,
+                        featureState,
+                      )
                     : null;
                 if (!iconColor || iconColor.a !== 0) {
                   const haloColor = getValue(
@@ -919,11 +919,11 @@ export function stylefunction(
                     }
                     let color = iconColor
                       ? [
-                        iconColor.r * 255,
-                        iconColor.g * 255,
-                        iconColor.b * 255,
-                        iconColor.a,
-                      ]
+                          iconColor.r * 255,
+                          iconColor.g * 255,
+                          iconColor.b * 255,
+                          iconColor.a,
+                        ]
                       : undefined;
                     if (imageElement) {
                       const iconOptions = {
@@ -985,7 +985,7 @@ export function stylefunction(
                                 width: spriteImageSize[0],
                                 height: spriteImageSize[1],
                               },
-                              { r: 1, g: 1, b: 1, a: 1 },
+                              {r: 1, g: 1, b: 1, a: 1},
                             );
                           }
                           img = spriteImageUnSDFed;
@@ -1026,17 +1026,17 @@ export function stylefunction(
                   style.setGeometry(styleGeom);
                   iconImg.setRotation(
                     placementAngle +
-                    deg2rad(
-                      getValue(
-                        layer,
-                        'layout',
-                        'icon-rotate',
-                        zoom,
-                        f,
-                        functionCache,
-                        featureState,
+                      deg2rad(
+                        getValue(
+                          layer,
+                          'layout',
+                          'icon-rotate',
+                          zoom,
+                          f,
+                          functionCache,
+                          featureState,
+                        ),
                       ),
-                    ),
                   );
                   iconImg.setOpacity(
                     getValue(
@@ -1051,15 +1051,15 @@ export function stylefunction(
                   );
                   iconImg.setAnchor(
                     anchor[
-                    getValue(
-                      layer,
-                      'layout',
-                      'icon-anchor',
-                      zoom,
-                      f,
-                      functionCache,
-                      featureState,
-                    )
+                      getValue(
+                        layer,
+                        'layout',
+                        'icon-anchor',
+                        zoom,
+                        f,
+                        functionCache,
+                        featureState,
+                      )
                     ],
                   );
                   style.setImage(iconImg);
@@ -1091,14 +1091,14 @@ export function stylefunction(
           const circleRadius =
             'circle-radius' in paint
               ? getValue(
-                layer,
-                'paint',
-                'circle-radius',
-                zoom,
-                f,
-                functionCache,
-                featureState,
-              )
+                  layer,
+                  'paint',
+                  'circle-radius',
+                  zoom,
+                  f,
+                  functionCache,
+                  featureState,
+                )
               : 5;
           const circleStrokeColor = colorWithOpacity(
             getValue(
@@ -1180,14 +1180,14 @@ export function stylefunction(
               stroke:
                 circleStrokeColor && circleStrokeWidth > 0
                   ? new Stroke({
-                    width: circleStrokeWidth,
-                    color: circleStrokeColor,
-                  })
+                      width: circleStrokeWidth,
+                      color: circleStrokeColor,
+                    })
                   : undefined,
               fill: circleColor
                 ? new Fill({
-                  color: circleColor,
-                })
+                    color: circleColor,
+                  })
                 : undefined,
               declutterMode: 'none',
             });
@@ -1235,11 +1235,11 @@ export function stylefunction(
           font = mb2css(
             getFonts
               ? getFonts(
-                fontArray,
-                glStyle.metadata
-                  ? glStyle.metadata['ol:webfonts']
-                  : undefined,
-              )
+                  fontArray,
+                  glStyle.metadata
+                    ? glStyle.metadata['ol:webfonts']
+                    : undefined,
+                )
               : fontArray,
             textSize,
             textLineHeight,
@@ -1414,14 +1414,14 @@ export function stylefunction(
             hasImage || type == 1
               ? 'point'
               : getValue(
-                layer,
-                'layout',
-                'symbol-placement',
-                zoom,
-                f,
-                functionCache,
-                featureState,
-              );
+                  layer,
+                  'layout',
+                  'symbol-placement',
+                  zoom,
+                  f,
+                  functionCache,
+                  featureState,
+                );
           let textAlign;
           if (placement === 'line-center') {
             text.setPlacement('line');
@@ -1505,7 +1505,7 @@ export function stylefunction(
                 ),
               ) *
                 label.length) /
-              wrappedLabel.length,
+                wrappedLabel.length,
             );
             text.setRotateWithView(false);
           }
@@ -1641,6 +1641,5 @@ export {
   colorWithOpacity as _colorWithOpacity,
   evaluateFilter as _evaluateFilter,
   fromTemplate as _fromTemplate,
-  getValue as _getValue
+  getValue as _getValue,
 };
-
