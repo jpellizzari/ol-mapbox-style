@@ -1,5 +1,5 @@
 {
-  "name": "ol-mapbox-style",
+  "name": "@jpellizzari/ol-mapbox-style",
   "version": "12.3.5",
   "description": "Create OpenLayers maps from Mapbox Style objects",
   "type": "module",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/openlayers/ol-mapbox-style.git"
+    "url": "git://github.com/jpellizzari/ol-mapbox-style.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
