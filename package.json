@@ -17,6 +17,9 @@
     "type": "git",
     "url": "git://github.com/openlayers/ol-mapbox-style.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "bugs": {
     "url": "https://github.com/openlayers/ol-mapbox-style/issues"
   },
